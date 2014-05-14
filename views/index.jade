@@ -1,0 +1,64 @@
+doctype 5
+html(lang="es")
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    div#error= error
+    p Hello #{title} #{email}
+    h1= title
+    h2= email
+    form(method='post')
+      label Nombre
+      input(type='text', name='name')
+      label email
+      input(type='text', name='email')
+      input(type='submit', value='enviar')
+
+    ul#emails
+      if(typeof(list) != "undefined")
+        each item in list
+          li
+            div.text
+                span #{item.name} - #{item.email} 
+                a.edit(href="#") Edit |
+                a.delete(href="#") Delete
+            form.edit.hidden(method='post', action='/save')
+              input(type='hidden', name='id', value='#{item._id}')
+              input(type='text', name='name', value='#{item.name}')
+              input(type='text', name='email', value='#{item.email}')
+              a.save(href='#') Guardar 
+              samall
+                a.cancel(href='#') cancelar
+    div#simple-content
+    form(id="simple-form")
+      input(type="text", id="simple-text")
+      input(type="submit", value="submit")
+
+  script(src='http://code.jquery.com/jquery.min.js')
+  script(src='/javascripts/main.js')
+  script(src='/socket.io/socket.io.js')
+  script(type='text/javascript')
+    var socket  = io.connect();
+    var content = $('#simple-content');
+
+    socket.on('connect', function (){
+      $('#simple-form').css('display','block');
+      content.append($('<p>').text('connected'));
+    })
+
+    socket.on('message', function (msg){
+      content.append($('<p>').text(msg));
+    });
+
+    $('#simple-form').submit(function (e){
+      console.log('hola');
+      e.preventDefault();
+      var textObj = $('#simple-text');
+      var msg = textObj.val();
+      textObj.val("");
+      content.append($('<p>').text(msg)
+        .append($('<em>').text('from me')));
+      socket.send(msg);
+      console.log(textObj);
+    });

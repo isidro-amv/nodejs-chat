@@ -1,0 +1,59 @@
+doctype 5
+html(lang="es")
+head
+	title= "Chat - Open Lenguaje"
+	link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Gochi+Hand')
+	link(rel='stylesheet', href='/stylesheets/chat-style.css')
+body
+	#content
+		header
+			nav
+				#title Open Lenguaje
+				#menu
+					ul
+						li INICIO
+						li PERFIL
+						li SALIR
+				#search
+					form(action='search', method='post')
+								label Buscar:
+								input(type='text', name="words", placeholder="Salas | intereses | lugares")
+		section
+			#content-section
+				#chat-title
+					h1 Ciencia
+				#chat-content
+					#chat-message
+						#input-message
+							form(id='chat-form', method='post')
+								input(type='text', name='message', id='simple-text')
+								input(type='submit', value='Enviar')
+					#chat-history
+						
+	footer
+		include footer.jade
+	script(type='text/javascript')
+	script(src='http://code.jquery.com/jquery.min.js')
+	script(src='/javascripts/main.js')
+	script(src='/socket.io/socket.io.js')
+	script(type='text/javascript')
+		var socket  = io.connect();
+		var content = $('#chat-history');
+
+		socket.on('connect', function (){
+			$('#chat-history').css('display','block');
+			content.append('<div class="chat-label"><div class="picture"></div><div class="arrow"></div><div class="message">He entrado</div></div>');
+		})
+
+		socket.on('message', function (msg){
+			content.append('<div class="chat-label"><div class="picture"></div><div class="arrow"></div><div class="message">'+msg+'</div></div>');
+		});
+
+		$('#chat-form').submit(function (e){
+			e.preventDefault();
+			var textObj = $('#simple-text');
+			var msg = textObj.val();
+			textObj.val("");
+			content.append('<div class="chat-label"><div class="picture"></div><div class="arrow"></div><div class="message"> From me: '+msg+'</div></div>');
+			socket.send(msg);
+		});

@@ -1,0 +1,67 @@
+@import "reset.css";
+html body {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+body {
+  background: url("../images/home_background_1.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#bar-top {
+  width: 100%;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  font-size: 1.2em;
+  background: #555;
+}
+#bar-top #title {
+  float: left;
+  width: 15em;
+  padding-top: 0.5%;
+  padding-left: 6%;
+  font-family: 'Gochi Hand', cursive;
+}
+#bar-top #title h1 {
+  font-size: 2em;
+}
+#bar-top #main-login {
+  width: 35em;
+  float: right;
+  padding: 1%;
+}
+#bar-top #main-login label {
+  padding-left: 3%;
+}
+#bar-top #main-login input[type="submit"] {
+  margin-left: 3%;
+}
+#sing-up {
+  text-align: center;
+  width: 13em;
+  margin: 13% auto;
+  padding: 2%;
+  border: 2px solid #aaa;
+  -webkit-border-radius: 24px;
+  -moz-border-radius: 24px;
+  border-radius: 24px;
+  -webkit-box-shadow: 15px 14px 28px rgba(189,189,189,0.6);
+  -moz-box-shadow: 15px 14px 28px rgba(189,189,189,0.6);
+  background: rgba(189,189,189,0.25);
+}
+#sing-up h2 {
+  font-family: 'Gochi Hand', cursive;
+  font-size: 2em;
+  line-height: 2em;
+  cursor: pointer;
+}
+#sing-up select {
+  width: 13em;
+}
+#sing-up #form-reg {
+  display: none;
+}

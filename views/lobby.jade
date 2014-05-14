@@ -1,0 +1,71 @@
+doctype 5
+html(lang="es")
+head
+	title= "Lobby - Open Lenguaje"
+	link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Gochi+Hand')
+	link(rel='stylesheet', href='/stylesheets/lobby-style.css')
+body
+	div#content
+		header
+			nav
+				#title Open Lenguaje
+				div#menu
+					ul
+						li INICIO
+						li PERFIL
+						li SALIR
+				div#search
+					form(action='search', method='post')
+								label Buscar:
+								input(type='text', name="words", placeholder="Salas | intereses | lugares")
+		section
+			div#title-user
+				img(src="#", class='picture-face')
+				span - Usuario_1
+			div#nav-section
+				div#order-by Ordenado Por:
+					select
+						option Default
+						option Usuarios
+						option Fecha
+						option Nombre
+			div#content-section
+				div#line
+				-elements =[]
+				-n=3;
+				-clase = 'hex'
+				-elements.push({ name: 'science', image: 'images/lobby_symbols/science.png', color:'#fff', link:'science' })
+				-elements.push({ name: 'policy', image: 'images/lobby_symbols/policy.png', color:'#fff', link:'policy' })
+				-elements.push({ name: 'entertainment', image: 'images/lobby_symbols/entertainment.png', color:'#fff', link:'entertainment' })
+				-elements.push({ name: 'beauty', image: 'images/lobby_symbols/beauty.png', color:'#fff', link:'beauty' })
+				-elements.push({ name: 'food', image: 'images/lobby_symbols/food.png', color:'#fff', link:'food' })
+				-elements.push({ name: 'religion', image: 'images/lobby_symbols/religion.png', color:'#fff', link:'religion' })
+				-elements.push({ name: 'technology', image: 'images/lobby_symbols/technology.png', color:'#fff', link:'technology' })
+				-elements.push({ name: 'social', image: 'images/lobby_symbols/social.png', color:'#fff', link:'social' })
+				-elements.push({ name: 'sport', image: 'images/lobby_symbols/sport.png', color:'#fff', link:'sport' })
+				-elements.push({ name: 'travel', image: 'images/lobby_symbols/travel.png', color:'#fff', link:'travel' })
+				-elements.push({ name: 'travel_2', image: 'images/lobby_symbols/travel_2.png', color:'#fff', link:'travel_2' })
+				each el, i in elements
+					-if(i==n)
+							-if(clase=='hex')
+								-clase='hex-1'
+								- n += 4
+								br
+							-else
+								-clase='hex'
+								- n += 3
+								br
+					div(class='#{clase}')
+						div.hex-in-1
+						div.hex-in-2
+						div.hex-in-3
+						div.hex-in-4= el.name
+						div.hex-content
+							a(href='chat/'+el.link)
+								img(src=el.image, class="image-hex")
+							
+
+		footer
+			include footer.jade
+script(type='text/javascript')
+script(type='http://code.jquery.com/jquery.min.js')

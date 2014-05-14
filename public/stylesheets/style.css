@@ -1,0 +1,18 @@
+@import "reset.css";
+* {
+  color: #959;
+  font-size: 1.03em;
+}
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00b7ff;
+}
+.hidden {
+  display: none;
+}
+#error {
+  color: #f00;
+}

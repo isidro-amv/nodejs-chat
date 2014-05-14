@@ -1,0 +1,36 @@
+doctype 5
+html(lang="es")
+head
+	title= "Open Lenguaje"
+	link(rel='stylesheet', href='/stylesheets/home-style.css')
+body
+div#content
+	div#bar-top
+		div#title
+			h1 Open Lenguaje
+		div#main-login
+			form(action='login', method='post')
+				label email
+				input(type="text", name="email")
+				label contraseña
+				input(type="password", name="pass")
+				input(type="submit", value="Entrar")	
+	div#bar-content
+		div#sing-up
+			h2 Registrate
+			div#form-reg
+				form( id="form-login", action="lobby" , method='get')
+					input(type="text", name="name", placeholder="Escribe tu nombre")
+					input(type="text", name="lenguaje", placeholder="Escribe tu idioma")
+					select( name='sexo')
+						option(value='m') Masculino
+						option(value='f') Femenino
+					input(type="email", name="email", placeholder="Escribe tu email")
+					input(type="password", name="pass-one", placeholder="Escribe tu contraseña")	
+					input(type="password", name="pass-two", placeholder="Escribe nuevamente tu contraseña")
+					input(type="submit", value="Registrar")
+	footer
+		include footer.jade
+
+script(src='http://code.jquery.com/jquery.min.js')
+script(src="javascripts/main.js")
